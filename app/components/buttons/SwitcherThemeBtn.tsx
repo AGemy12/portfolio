@@ -3,7 +3,7 @@ import { useTheme } from "../../context/ThemeContext";
 import { FiSun, FiMoon } from "react-icons/fi";
 
 export default function SwitcherThemeBtn() {
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
   return (
     <button
       onClick={toggleTheme}
