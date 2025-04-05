@@ -1,26 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-dark: var(--dark);
+  --color-light: var(--light);
+  --color-main_light_text: var(--main_light_text);
+  --color-alt_light_text: var(--alt_light_text);
+  --color-main_dark_text: var(--main_dark_text);
+  --color-alt_dark_text: var(--alt_dark_text);
+  --animate-fill_text: fill_text 4s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer utilities {
+  .text_stroke {
+    -webkit-text-stroke: 2px var(--main_light_text);
+    color: transparent;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .clip-wave {
+    animation: waveFill 4s ease-in-out infinite;
+    clip-path: polygon(
+      0% 45%,
+      15% 44%,
+      32% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  @keyframes waveFill {
+    0%,
+    100% {
+      clip-path: polygon(
+        0% 45%,
+        15% 44%,
+        32% 50%,
+        54% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%
+      );
+    }
+    50% {
+      clip-path: polygon(
+        0% 60%,
+        16% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%
+      );
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fill_text {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      15% 44%,
+      32% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 45%,
+      15% 44%,
+      32% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+
+:root {
+  --dark: #111827;
+  --light: #f9fafb;
+  --main_light_text: #51a2ff;
+  --alt_light_text: #6b7280;
+  --main_dark_text: #bedbff;
+  --alt_dark_text: #0d0e0f;
+}
+
+.dark_mood_text {
+  color: black;
+}
+.light_mood_text {
+  color: #fff;
+}
+.light_bg {
+  background-color: var(--light);
+}
+.dark_bg {
+  background-color: var(--dark);
 }
