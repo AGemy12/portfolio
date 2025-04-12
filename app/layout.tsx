@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cairo } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./context/ThemeContext";
-import Header from "./components/main/Header";
+import { ThemeProvider } from "../context/ThemeContext";
+import Header from "../components/main/Header";
+import Loading from "@/components/parts/Loading";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const cairo = Cairo({
+  variable: "--font-cairo",
   subsets: ["latin"],
 });
 
@@ -45,10 +41,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-light dark:bg-black`}
-      >
+      <body className={`${cairo.variable} bg-light dark:bg-dark`}>
         <ThemeProvider>
+          <Loading />
           <Header />
           <main>{children}</main>
         </ThemeProvider>

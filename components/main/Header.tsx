@@ -3,7 +3,7 @@ import SwitcherThemeBtn from "../buttons/SwitcherThemeBtn";
 
 export default function Header() {
   return (
-    <div className="fixed top-4 right-4">
+    <div className="fixed top-4 right-4 z-50">
       <SwitcherThemeBtn />
     </div>
   );
